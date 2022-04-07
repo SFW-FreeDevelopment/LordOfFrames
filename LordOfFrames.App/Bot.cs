@@ -11,6 +11,7 @@ public static class Bot
     private static DiscordSocketClient _client;
     private static CommandService _commands;
     private static IServiceProvider _services;
+    
 
     public static async Task RunBotAsync()
     {
@@ -21,7 +22,7 @@ public static class Bot
             .AddSingleton(_commands)
             .BuildServiceProvider();
 
-        const string token = "CHANGE_ME";
+        const string token = $"{Constants.BotToken}";
 
         _client.Log += Log;
 
