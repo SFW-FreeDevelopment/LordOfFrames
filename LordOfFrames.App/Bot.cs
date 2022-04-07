@@ -59,5 +59,15 @@ public static class Bot
             if (!result.IsSuccess)
                 Console.WriteLine(result.ErrorReason);
         }
+        else
+        {
+            argPos = 0;
+            if (message.HasStringPrefix("<@961429965570719746> ", ref argPos))
+            {
+                var result = await _commands.ExecuteAsync(context, argPos, _services);
+                if (!result.IsSuccess)
+                    Console.WriteLine(result.ErrorReason);
+            }
+        }
     }
 }
