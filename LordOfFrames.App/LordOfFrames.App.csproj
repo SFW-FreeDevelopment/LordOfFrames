@@ -13,4 +13,9 @@
       <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LordOfFrames.Database\LordOfFrames.Database.csproj" />
+      <ProjectReference Include="..\LordOfFrames.Models\LordOfFrames.Models.csproj" />
+    </ItemGroup>
+
 </Project>

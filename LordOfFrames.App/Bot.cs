@@ -2,7 +2,7 @@
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using LordOfFrames.App.Repositories;
+using LordOfFrames.Database;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
