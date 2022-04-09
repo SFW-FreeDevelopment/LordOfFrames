@@ -2,7 +2,7 @@
 
 namespace LordOfFrames.Models;
 
-public class Character : BaseResource
+public class Character : Base
 {
     public List<Move> Moves { get; set; }
 }

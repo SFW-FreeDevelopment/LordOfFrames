@@ -1,6 +1,6 @@
 ﻿namespace LordOfFrames.Models;
 
-public class Move : BaseResource
+public class Move : Base
 {
     public string Input { get; set; }
     public int? Startup { get; set; }
@@ -8,7 +8,7 @@ public class Move : BaseResource
     public int? OnHit { get; set; }
     public int? OnBlock { get; set; }
     public int? Recovery { get; set; }
-    public MoveType Type { get; set; }
+    public MoveType? Type { get; set; }
 }
 
 public enum MoveType

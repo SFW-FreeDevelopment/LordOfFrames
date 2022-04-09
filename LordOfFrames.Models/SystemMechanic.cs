@@ -1,6 +1,6 @@
 ﻿namespace LordOfFrames.Models;
 
-public class SystemMechanic : BaseResource
+public class SystemMechanic : Base
 {
     //TODO: Figure this out
 }
