@@ -4,6 +4,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using LordOfFrames.App.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace LordOfFrames.App;
 
@@ -21,6 +22,7 @@ public static class Bot
         _services = new ServiceCollection()
             .AddSingleton(_client)
             .AddSingleton(_commands)
+            .AddScoped<IMongoClient, MongoClient>(_ => new MongoClient(MongoClientSettings.FromConnectionString(Constants.MongoDatabaseConnectionString)))
             .AddScoped<GameRepository>()
             .BuildServiceProvider();
 
