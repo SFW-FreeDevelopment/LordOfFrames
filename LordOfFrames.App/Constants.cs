@@ -8,4 +8,6 @@ public static class Constants
                                                 $"  • **ping** - Pings the Discord channel{Environment.NewLine}";
 
     public const string PingMessage = "I am pinging the server.";
+    public const string MongoDatabaseUsername = "admin";
+    public const string MongoDatabasePassword = "CHANGE_ME";
 }
