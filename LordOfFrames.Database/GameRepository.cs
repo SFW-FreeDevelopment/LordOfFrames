@@ -28,6 +28,7 @@ public class GameRepository
 
     public async Task<Game> Create(Game data)
     {
+        data.Version = 1;
         data.CreatedAt = DateTime.UtcNow;
         data.UpdatedAt = data.CreatedAt;
         await GetCollection().InsertOneAsync(data);
