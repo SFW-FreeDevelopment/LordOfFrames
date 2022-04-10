@@ -20,17 +20,16 @@ public class GameController : ControllerBase
     [HttpGet]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(List<Game>))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> GetAllGames()
     {
         return Ok(await _repository.GetAll());
     }
 
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById([FromRoute] string id)
+    public async Task<IActionResult> GetGameById([FromRoute] string id)
     {
         return Ok(await _repository.GetById(id));
     }
@@ -39,17 +38,99 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status201Created, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
-    public async Task<IActionResult> Create(GameCreateRequest request)
+    public async Task<IActionResult> CreateGame(GameCreateRequest request)
     {
         var game = new Game(request);
         return Created($"/games/{game.Id}", await _repository.Create(game));
     }
 
-    [HttpPut("id")]
+    [HttpPatch("{id}/updateGameInformation")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
-    public async Task<IActionResult> Update([FromRoute] string id, Game request)
+    public async Task<IActionResult> UpdateGame([FromRoute] string id, GameUpdateRequest request)
+    {
+        var game = await _repository.GetById(id);
+        return Ok(await _repository.Update(id, game));
+    }
+    
+    [HttpGet("{id}/characters")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(List<Character>))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetAllCharacters([FromRoute] string id)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpGet("{id}/characters/{slug}")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetCharacterBySlug([FromRoute] string id, [FromRoute] string slug)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpPatch("{id}/characters/addCharacter")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> AddCharacter([FromRoute] string id, Character request)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpPatch("{id}/characters/{slug}/updateCharacterInformation")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> UpdateCharacter([FromRoute] string id, [FromRoute] string slug, Character request)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpGet("{id}/systemMechanics")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(List<SystemMechanic>))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetAllSystemMechanics([FromRoute] string id)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpGet("{id}/systemMechanics/{slug}")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetSystemMechanicBySlug([FromRoute] string id, [FromRoute] string slug)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpPatch("{id}/characters/addSystemMechanic")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> AddSystemMechanic([FromRoute] string id, SystemMechanic request)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpPatch("{id}/systemMechanics/{slug}/updateSystemMechanicInformation")]
+    [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> UpdateSystemMechanic([FromRoute] string id, [FromRoute] string slug, SystemMechanic request)
     {
         throw new NotImplementedException();
     }
