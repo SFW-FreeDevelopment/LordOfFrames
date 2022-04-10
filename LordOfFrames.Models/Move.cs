@@ -1,4 +1,7 @@
-﻿namespace LordOfFrames.Models;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace LordOfFrames.Models;
 
 public class Move : Base
 {
@@ -8,9 +11,10 @@ public class Move : Base
     public int? OnHit { get; set; }
     public int? OnBlock { get; set; }
     public int? Recovery { get; set; }
-    public MoveType? Type { get; set; }
+    public MoveType Type { get; set; }
 }
 
+[JsonConverter(typeof(StringEnumConverter))]
 public enum MoveType
 {
     Normal,

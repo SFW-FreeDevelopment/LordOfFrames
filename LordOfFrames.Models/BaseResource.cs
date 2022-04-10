@@ -5,8 +5,9 @@ namespace LordOfFrames.Models;
 
 public abstract class BaseResource : Base
 {
-    [BsonId] public string Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    [ConcurrencyCheck] public int Version { get; set; }
+    
+    [Required] [BsonId] public string Id { get; set; }
+    [Required] public DateTime CreatedAt { get; set; }
+    [Required] public DateTime UpdatedAt { get; set; }
+    [Required] [ConcurrencyCheck] public int Version { get; set; }
 }

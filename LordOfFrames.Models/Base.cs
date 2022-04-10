@@ -1,8 +1,10 @@
-﻿namespace LordOfFrames.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LordOfFrames.Models;
 
 public abstract class Base
 {
-    public string Slug { get; set; }
-    public string Name { get; set; }
+    [Required] public string Slug { get; set; }
+    [Required] public string Name { get; set; }
     public string Description { get; set; }
 }
