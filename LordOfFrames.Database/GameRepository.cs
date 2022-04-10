@@ -44,11 +44,6 @@ public class GameRepository
         return data;
     }
 
-    public async Task Delete(string id)
-    {
-        await GetCollection().DeleteOneAsync(x => x.Id == id);
-    }
-    
     private IMongoCollection<Game> GetCollection()
     {
         IMongoDatabase database = _mongoClient.GetDatabase("lordofframes");
