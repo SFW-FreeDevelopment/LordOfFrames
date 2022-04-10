@@ -20,7 +20,7 @@ public class ListGamesCommand : CommandBase
         var games = await _repository.GetAll();
         foreach (var game in games.OrderBy(g => g.Name))
         {
-            sb.Append($"- {game.Name} ({game.Id})\n");
+            sb.Append($"- {game.Name} (id: {game.Id})\n");
         }
         var dmChannel = await GuildUser.CreateDMChannelAsync();
         await dmChannel.SendMessageAsync($"Game List:\n{sb}");
