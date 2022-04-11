@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace LordOfFrames.Models;
 
-public abstract class BaseResource : Base
+public abstract class BaseResource : Base<BaseResource>
 {
     
     [Required] [BsonId] public string Id { get; set; }
