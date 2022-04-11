@@ -43,24 +43,18 @@ public class GameRepository
         await GetCollection().ReplaceOneAsync(x => x.Id == id, data);
         return data;
     }
-
-    //get all characters by game
-    
     public async Task<List<Character>> GetAllCharactersByGameId(string id)
     {
         var game = await GetById(id);
         return game.Characters;
     }
     
-    
-    //get character by game and slug
     public async Task<Character> GetCharacterByGameIdAndSlug(string id, string slug)
     {
         var game = await GetById(id);
         return game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,slug, StringComparison.OrdinalIgnoreCase));
     }
-    //update character
-    
+  
     public async Task<Character> UpdateCharacter(string id, Character data)
     {
         var game = await GetById(id);
@@ -71,11 +65,11 @@ public class GameRepository
         await GetCollection().ReplaceOneAsync(x => x.Id == id, game);
         return data;
     }
-    //get all system mechanic by game
+    //TODO: get all system mechanic by game
     
-    //get system mechanic by game and slug
+    //TODO: get system mechanic by game and slug
     
-    //update system mechanic 
+    //TODO: update system mechanic 
     
     
     private IMongoCollection<Game> GetCollection()
