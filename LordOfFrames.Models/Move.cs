@@ -11,7 +11,7 @@ public class Move : Base<Move>
     public int? OnHit { get; set; }
     public int? OnBlock { get; set; }
     public int? Recovery { get; set; }
-    public MoveType Type { get; set; }
+    public MoveType? Type { get; set; }
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
