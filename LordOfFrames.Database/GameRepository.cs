@@ -44,6 +44,32 @@ public class GameRepository
         return data;
     }
 
+    //get all characters by game
+    
+    public async Task<List<Character>> GetAllCharactersByGameId(string id)
+    {
+        var game = await GetCollection().AsQueryable()
+            .FirstOrDefaultAsync(g => g.Id == id);
+        return game.Characters;
+    }
+    
+    
+    //get character by game and slug
+    public async Task<Character> GetCharacterByGameIdAndSlug(string id, string slug)
+    {
+        var game = await GetCollection().AsQueryable()
+            .FirstOrDefaultAsync(g => g.Id == id);
+        return game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,slug, StringComparison.OrdinalIgnoreCase));
+    }
+    //update character
+    
+    //get all system mechanic by game
+    
+    //get system mechanic by game and slug
+    
+    //update system mechanic 
+    
+    
     private IMongoCollection<Game> GetCollection()
     {
         IMongoDatabase database = _mongoClient.GetDatabase("lordofframes");
