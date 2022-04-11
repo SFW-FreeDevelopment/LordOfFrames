@@ -58,8 +58,7 @@ public class GameRepository
     public async Task<Character> CreateCharacter(string id, Character data)
     {
         var game = await GetGameById(id);
-        var character = game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,data.Slug, StringComparison.OrdinalIgnoreCase));
-        character?.Map(data);
+        game.Characters.Add(data);
         game.UpdatedAt = DateTime.UtcNow;
         game.Version++;
         await GetCollection().ReplaceOneAsync(x => x.Id == id, game);
@@ -70,6 +69,8 @@ public class GameRepository
     {
         var game = await GetGameById(id);
         var character = game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,data.Slug, StringComparison.OrdinalIgnoreCase));
+        data.Slug = character?.Slug;
+        data.Name = character?.Name;
         character?.Map(data);
         game.UpdatedAt = DateTime.UtcNow;
         game.Version++;
