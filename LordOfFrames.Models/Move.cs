@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace LordOfFrames.Models;
 
-public class Move : Base
+public class Move : Base<Move>
 {
     public string Input { get; set; }
     public int? Startup { get; set; }
