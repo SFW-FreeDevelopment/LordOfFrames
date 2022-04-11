@@ -17,7 +17,7 @@ public class ListGamesCommand : CommandBase
     public async Task HandleCommandAsync()
     {
         var sb = new StringBuilder();
-        var games = await _repository.GetAll();
+        var games = await _repository.GetAllGames();
         foreach (var game in games.OrderBy(g => g.Name))
         {
             sb.Append($"- {game.Name} (id: {game.Id})\n");

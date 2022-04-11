@@ -22,7 +22,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAllGames()
     {
-        return Ok(await _repository.GetAll());
+        return Ok(await _repository.GetAllGames());
     }
 
     [HttpGet("{id}")]
@@ -31,7 +31,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetGameById([FromRoute] string id)
     {
-        return Ok(await _repository.GetById(id));
+        return Ok(await _repository.GetGameById(id));
     }
     
     [HttpPost]
@@ -41,7 +41,7 @@ public class GameController : ControllerBase
     public async Task<IActionResult> CreateGame(GameCreateRequest request)
     {
         var game = new Game(request);
-        return Created($"/games/{game.Id}", await _repository.Create(game));
+        return Created($"/games/{game.Id}", await _repository.CreateGame(game));
     }
 
     [HttpPatch("{id}/updateGameInformation")]
@@ -51,8 +51,8 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> UpdateGame([FromRoute] string id, GameUpdateRequest request)
     {
-        var game = await _repository.GetById(id);
-        return Ok(await _repository.Update(id, game));
+        var game = await _repository.GetGameById(id);
+        return Ok(await _repository.UpdateGame(id, game));
     }
     
     [HttpGet("{id}/characters")]
@@ -62,7 +62,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> GetAllCharacters([FromRoute] string id)
     {
-        throw new NotImplementedException();
+        return Ok(await _repository.GetAllCharactersByGameId(id));
     }
     
     [HttpGet("{id}/characters/{slug}")]
@@ -72,7 +72,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> GetCharacterBySlug([FromRoute] string id, [FromRoute] string slug)
     {
-        throw new NotImplementedException();
+        return Ok(await _repository.GetCharacterByGameIdAndSlug(id, slug));
     }
     
     [HttpPatch("{id}/characters/addCharacter")]
@@ -82,7 +82,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> AddCharacter([FromRoute] string id, Character request)
     {
-        throw new NotImplementedException();
+        return Ok(await _repository.CreateCharacter(id, request));
     }
     
     [HttpPatch("{id}/characters/{slug}/updateCharacterInformation")]
@@ -92,7 +92,7 @@ public class GameController : ControllerBase
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> UpdateCharacter([FromRoute] string id, [FromRoute] string slug, Character request)
     {
-        throw new NotImplementedException();
+        return Ok(await _repository.UpdateCharacter(id, request));
     }
     
     [HttpGet("{id}/systemMechanics")]
