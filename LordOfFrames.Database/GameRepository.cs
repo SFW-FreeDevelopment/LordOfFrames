@@ -48,8 +48,7 @@ public class GameRepository
     
     public async Task<List<Character>> GetAllCharactersByGameId(string id)
     {
-        var game = await GetCollection().AsQueryable()
-            .FirstOrDefaultAsync(g => g.Id == id);
+        var game = await GetById(id);
         return game.Characters;
     }
     
@@ -57,12 +56,21 @@ public class GameRepository
     //get character by game and slug
     public async Task<Character> GetCharacterByGameIdAndSlug(string id, string slug)
     {
-        var game = await GetCollection().AsQueryable()
-            .FirstOrDefaultAsync(g => g.Id == id);
+        var game = await GetById(id);
         return game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,slug, StringComparison.OrdinalIgnoreCase));
     }
     //update character
     
+    public async Task<Character> UpdateCharacter(string id, Character data)
+    {
+        var game = await GetById(id);
+        var character = game.Characters.FirstOrDefault(c=> string.Equals(c.Slug,data.Slug, StringComparison.OrdinalIgnoreCase));
+        character?.Map(data);
+        game.UpdatedAt = DateTime.UtcNow;
+        game.Version++;
+        await GetCollection().ReplaceOneAsync(x => x.Id == id, game);
+        return data;
+    }
     //get all system mechanic by game
     
     //get system mechanic by game and slug
