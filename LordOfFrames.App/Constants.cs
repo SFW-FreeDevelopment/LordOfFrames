@@ -5,7 +5,8 @@ public static class Constants
     public const string BotToken = "CHANGE_ME";
     
     public static readonly string HelpMessage = $"**The following commands can be used:**{Environment.NewLine}" +
-                                                $"  • **ping** - Pings the Discord channel{Environment.NewLine}";
+                                                $"  • **ping** - Pings the Discord channel{Environment.NewLine}"+ 
+                                                $"  • **listgames** - Lists the games, with their ids, that have available frame data{Environment.NewLine}";
 
     public const string PingMessage = "I am pinging the server.";
     public const string MongoDatabaseUsername = "admin";
