@@ -7,6 +7,7 @@ public class HelpCommand : CommandBase
     [Command("help")]
     public async Task HandleCommandAsync()
     {
-        await ReplyAsync(Constants.HelpMessage);
+        var dmChannel = await GuildUser.CreateDMChannelAsync();
+        await dmChannel.SendMessageAsync(Constants.HelpMessage);
     }
 }
