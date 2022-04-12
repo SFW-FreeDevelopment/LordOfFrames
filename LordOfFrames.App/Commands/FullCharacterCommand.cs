@@ -25,7 +25,7 @@ public class FullCharacterCommand : CommandBase
             foreach (var move in character.Moves)
             {
                 moveText.Append($"- **{move.Name}** (id: {move.Slug})\n" +
-                                $"Type: {move.Type}\n" +
+                                $"Type: {move.MapMoveTypeEnumToDisplayString()}\n" +
                                 $"Input: {move.Input}\n" +
                                 $"Startup: {move.Startup}\n" +
                                 $"Active: {move.Active}\n" +
