@@ -13,6 +13,20 @@ public class Move : Base<Move>
     public int? OnBlock { get; set; }
     public int? Recovery { get; set; }
     public MoveType Type { get; set; }
+
+    public string MapMoveTypeEnumToDisplayString()
+    {
+        return Type switch
+        {
+            MoveType.Normal => "Normal",
+            MoveType.CommandNormal => "Command Normal",
+            MoveType.Special => "Special",
+            MoveType.Super => "Super",
+            MoveType.Ultimate => "Ultimate",
+            MoveType.InstantKill => "Instant Kill",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
