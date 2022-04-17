@@ -13,21 +13,22 @@ public class ApiKeyMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        if (!context.Request.Headers.TryGetValue(ApiKey, out
+        if (context.Request.Headers.TryGetValue(ApiKey, out
                 var extractedApiKey))
         {
-            context.Response.StatusCode = 401;
-            return;
-        }
+            var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();
+            var apiKey = appSettings.GetValue<string>(ApiKey);
+            if (!apiKey.Equals(extractedApiKey))
+            {
+                context.Response.StatusCode = 401;
+                return;
+            }
 
-        var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();
-        var apiKey = appSettings.GetValue<string>(ApiKey);
-        if (!apiKey.Equals(extractedApiKey))
+            await _next(context);
+        }
+        else
         {
             context.Response.StatusCode = 401;
-            return;
         }
-
-        await _next(context);
     }
 }
