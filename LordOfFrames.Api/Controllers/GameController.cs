@@ -1,6 +1,7 @@
 ﻿using LordOfFrames.Database;
 using LordOfFrames.Models;
 using LordOfFrames.Models.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -17,6 +18,7 @@ public class GameController : ControllerBase
         _repository = repository;
     }
     
+    [AllowAnonymous]
     [HttpGet]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(List<Game>))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -25,6 +27,7 @@ public class GameController : ControllerBase
         return Ok(await _repository.GetAllGames());
     }
 
+    [AllowAnonymous]
     [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
