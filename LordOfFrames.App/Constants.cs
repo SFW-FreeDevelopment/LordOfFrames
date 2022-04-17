@@ -7,7 +7,8 @@ public static class Constants
     public static readonly string HelpMessage = $"**The following commands can be used:**{Environment.NewLine}" +
                                                 $"  • **ping** - Pings the Discord channel{Environment.NewLine}"+ 
                                                 $"  • **listgames** - Lists the games, with their ids, that have available frame data{Environment.NewLine}"+
-                                                $"  • **listcharacters gameId** - Lists the character names, with their slugs{Environment.NewLine}";
+                                                $"  • **listcharacters gameId** - Lists the character names, with their slugs{Environment.NewLine}" +
+                                                $"  • **fullcharacter gameId characterSlug** - Lists the full character data, for requested character{Environment.NewLine}";
     
     public const string PingMessage = "I am pinging the server.";
     public const string MongoDatabaseUsername = "admin";

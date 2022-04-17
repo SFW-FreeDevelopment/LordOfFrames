@@ -1,6 +1,4 @@
-﻿using LordOfFrames.Models;
-
-namespace LordOfFrames.Models;
+﻿namespace LordOfFrames.Models;
 
 public class Character : Base<Character>
 {
