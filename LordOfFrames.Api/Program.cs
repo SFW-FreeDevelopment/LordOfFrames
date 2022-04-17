@@ -45,8 +45,6 @@ builder.Services.AddScoped<GameRepository>();
 
 var app = builder.Build();
 
-//app.UseMiddleware<ApiKeyMiddleware>();
-
 // Configure the HTTP request pipeline.
 if (true || app.Environment.IsDevelopment())
 {
@@ -67,6 +65,8 @@ app.UseCors(x => x
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
