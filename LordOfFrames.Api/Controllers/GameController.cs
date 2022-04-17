@@ -1,4 +1,5 @@
-﻿using LordOfFrames.Database;
+﻿using LordOfFrames.Api.Attributes;
+using LordOfFrames.Database;
 using LordOfFrames.Models;
 using LordOfFrames.Models.Request;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,7 @@ public class GameController : ControllerBase
         return Ok(await _repository.GetGameById(id));
     }
     
+    [ApiKey]
     [HttpPost]
     [SwaggerResponse(StatusCodes.Status201Created, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -45,6 +47,7 @@ public class GameController : ControllerBase
         return Created($"/games/{game.Id}", await _repository.CreateGame(game));
     }
 
+    [ApiKey]
     [HttpPatch("{id}/updateGameInformation")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -76,6 +79,7 @@ public class GameController : ControllerBase
         return Ok(await _repository.GetCharacterByGameIdAndSlug(id, slug));
     }
     
+    [ApiKey]
     [HttpPatch("{id}/characters/addCharacter")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -86,6 +90,7 @@ public class GameController : ControllerBase
         return Ok(await _repository.CreateCharacter(id, request));
     }
     
+    [ApiKey]
     [HttpPatch("{id}/characters/{slug}/updateCharacterInformation")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -116,6 +121,7 @@ public class GameController : ControllerBase
         throw new NotImplementedException();
     }
     
+    [ApiKey]
     [HttpPatch("{id}/characters/addSystemMechanic")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Character))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -126,6 +132,7 @@ public class GameController : ControllerBase
         throw new NotImplementedException();
     }
     
+    [ApiKey]
     [HttpPatch("{id}/systemMechanics/{slug}/updateSystemMechanicInformation")]
     [SwaggerResponse(StatusCodes.Status200OK, null, typeof(Game))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
