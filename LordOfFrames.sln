@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfFrames.Database", "Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfFrames.Api", "LordOfFrames.Api\LordOfFrames.Api.csproj", "{1E07C3B8-9322-4003-92CD-A28A4FDB251D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfFrames.Web", "LordOfFrames.Web\LordOfFrames.Web.csproj", "{38855761-54F2-43D8-BA91-CE9995B75329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1E07C3B8-9322-4003-92CD-A28A4FDB251D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E07C3B8-9322-4003-92CD-A28A4FDB251D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E07C3B8-9322-4003-92CD-A28A4FDB251D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38855761-54F2-43D8-BA91-CE9995B75329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38855761-54F2-43D8-BA91-CE9995B75329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38855761-54F2-43D8-BA91-CE9995B75329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38855761-54F2-43D8-BA91-CE9995B75329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
