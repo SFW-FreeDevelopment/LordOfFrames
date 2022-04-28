@@ -11,22 +11,22 @@
     <title>Games</title>
 </head>
 <body>
-<div>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        @foreach (var game in Model)
-        {
-            <tr>
-                <td><a asp-area="" asp-controller="Game" asp-action="ViewSingle" asp-route-id="@game.Id">@game.Id</a></td>
-                <td>@game.Name</td>
-                <td>@game.Description</td>
-            </tr>
-        }
-    </table>
+<div class="container">
+    <table class="table table-striped">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        @foreach (var game in Model)
+                        {
+                            <tr>
+                                <th scope="row"><a asp-area="" asp-controller="Game" asp-action="ViewSingle" asp-route-id="@game.Id">@game.Id</a></th>
+                                <td>@game.Name</td>
+                                <td>@game.Description</td>
+                            </tr>
+                        }
+                    </table>
 </div>
 </body>
 </html>
