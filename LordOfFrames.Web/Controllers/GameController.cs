@@ -16,13 +16,13 @@ public class GameController : Controller
     public async Task<IActionResult> ViewAll()
     {
         var games = await _gameRepository.GetAllGames();
-        return View(games.ToList());
+        return games != null ? View(games.ToList()) : RedirectToAction("Index", "Home");
     }
     
     [Route("{id}")]
     public async Task<IActionResult> ViewSingle(string id)
     {
         var game = await _gameRepository.GetGameById(id);
-        return View(game);
+        return game != null ? View(game) : RedirectToAction("Index", "Home");
     }
 }
