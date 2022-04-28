@@ -11,8 +11,61 @@
     <title>@Model.Name</title>
 </head>
 <body>
-<div>
-      
+<div class="container">
+    <div class="col-12">
+        <h3>Characters</h3>
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+            @if (Model.Characters != null)
+            {
+                @foreach (var character in Model.Characters)
+                {
+                    <tr>
+                        <th scope="row"><a asp-area="" asp-controller="Game" asp-action="ViewSingle" asp-route-id="@character.Slug">@character.Slug</a></th>
+                        <td>@character.Name</td>
+                        <td>@character.Description</td>
+                    </tr>
+                }
+            }
+            @if (Model.SystemMechanics != null)
+            {
+                @foreach (var systemMechanic in Model.SystemMechanics)
+                {
+                    <tr>
+                        <th scope="row">@systemMechanic.Slug</th>
+                        <td>@systemMechanic.Name</td>
+                        <td>@systemMechanic.Description</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <br/>
+    <div class="col-12">
+            <h3>System Mechanics</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+                @if (Model.SystemMechanics != null)
+                {
+                    @foreach (var systemMechanic in Model.SystemMechanics)
+                    {
+                        <tr>
+                            <th scope="row">@systemMechanic.Slug</th>
+                            <td>@systemMechanic.Name</td>
+                            <td>@systemMechanic.Description</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
 </div>
 </body>
 </html>
