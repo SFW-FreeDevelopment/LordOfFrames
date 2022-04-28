@@ -4,6 +4,7 @@ using LordOfFrames.Web.Models;
 
 namespace LordOfFrames.Web.Controllers;
 
+[Route("")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -12,17 +13,19 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
+    
     public IActionResult Index()
     {
-        return View();
+        return RedirectToAction("ViewAll", "Game");
     }
 
+    [Route("privacy")]
     public IActionResult Privacy()
     {
         return View();
     }
 
+    [Route("error")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
