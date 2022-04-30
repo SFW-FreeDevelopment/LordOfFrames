@@ -1,6 +1,8 @@
-﻿namespace LordOfFrames.Api.Middleware;
+﻿using LordOfFrames.Api.Repositories;
 
-public class ApiKeyMiddleware
+namespace LordOfFrames.Api.Middleware;
+
+internal class ApiKeyMiddleware
 {
     private readonly RequestDelegate _next;
 
@@ -11,24 +13,29 @@ public class ApiKeyMiddleware
         _next = next;
     }
 
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, ApiKeyRepository apiKeyRepository)
     {
-        if (context.Request.Headers.TryGetValue(ApiKey, out
-                var extractedApiKey))
+        if (!string.Equals(context.Request.Method, "get", StringComparison.OrdinalIgnoreCase))
         {
-            var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();
-            var apiKey = appSettings.GetValue<string>(ApiKey);
-            if (!apiKey.Equals(extractedApiKey))
+            if (context.Request.Headers.TryGetValue(ApiKey, out
+                    var extractedApiKey))
+            {
+                var validated = await apiKeyRepository.ValidateKey(extractedApiKey);
+                if (!validated)
+                {
+                    context.Response.StatusCode = 401;
+                    return;
+                }
+
+                await _next(context);
+            }
+            else
             {
                 context.Response.StatusCode = 401;
                 return;
             }
-
-            await _next(context);
         }
-        else
-        {
-            context.Response.StatusCode = 401;
-        }
+        
+        await _next(context);
     }
 }
