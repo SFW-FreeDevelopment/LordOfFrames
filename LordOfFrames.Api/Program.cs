@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using LordOfFrames.Api.Middleware;
+using LordOfFrames.Api.Repositories;
 using LordOfFrames.Database;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IMongoClient, MongoClient>(_ =>
     new MongoClient(MongoClientSettings.FromConnectionString(mongoDbConnectionString)));
 
 builder.Services.AddScoped<GameRepository>();
+builder.Services.AddScoped<ApiKeyRepository>();
 
 var app = builder.Build();
 
@@ -66,7 +68,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-//app.UseMiddleware<ApiKeyMiddleware>();
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
